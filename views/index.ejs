@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+
+    <div id="page">
+        <div class="name-box">
+            <h4>Enter your name to start chat!</h4>
+            <form id="form1" action="">
+                <input autocomplete="off" id="input-name" type="text" placeholder="Name...">
+                <input id="btn1" type="submit" value="Start Chat">
+            </form>
+        </div>
+        
+        <div class="chat-box">
+            <header>
+                <h2>Chat Room</h2>
+                <button id="btn2">
+                    <h4><span> </span> is Active</h4>
+                </button>
+            </header>
+            <div class="box">
+                <!--  Isme hamne left aur right wala message box banaya hai-->
+            </div>
+            <footer>
+                <form id="footer-form" action="">
+                    <input autocomplete="off" id="footer-text" type="text" placeholder="Type...">
+                    <input id="footer-submit" type="submit" value="Send Message">
+                </form>
+            </footer>
+        </div>
+    
+    </div>
+    
+
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+
+    <script>
+
+        function scrollToBottom() {
+            var chatContainer = document.querySelector('.box');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        const startChat = document.querySelector('#form1');
+        const inputName = document.querySelector('#input-name');
+        let username;
+        let room = null
+
+        startChat.addEventListener('submit',(event)=>{
+            event.preventDefault();
+            if(inputName.value.trim().length>0){
+                // alert('hey')
+                
+                document.querySelector('.name-box').style.display = "none";
+                document.querySelector('.chat-box').style.display = "initial";
+                username = inputName.value.trim();
+                
+                const socket = io();
+
+                socket.emit('joinroom',username);
+
+                socket.on('roomJoined', (roomId)=>{
+                    room = roomId;
+                    console.log(room);
+                })
+
+                document.querySelector('#footer-form').addEventListener('submit',(val)=>{
+                    val.preventDefault();
+                    let message = document.querySelector('#footer-text').value;
+                    if(message.trim()){
+                        socket.emit('message',{message,room});
+                        document.querySelector("#footer-text").value = "";
+                        // console.log(message);
+                        // console.log(room);
+                        document.querySelector('.box').innerHTML += `<div class="right-box">
+                        <h5>${message}</h5>
+                        </div>`;
+                        scrollToBottom();
+                    }
+                })
+                socket.on('message',(value)=>{
+                    // console.log(value)
+                    document.querySelector('.box').innerHTML += `<div class="left-box">
+                        <h5>${value}</h5>
+                    </div>`;
+                    scrollToBottom();
+                })
+
+            }
+        })
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: gilroy;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+#page{
+    height: 100%;
+    width: 100%;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.name-box{
+    height: 28vh;
+    width: 25vw;
+    background-color: #0A2636;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+
+}
+#input-name{
+    outline: none;
+    height: 5vh;
+    width: 15vw;
+    border-radius: 5px;
+    border: none;
+    font-size: 12px;
+    padding: 5px;
+}
+#btn1{
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: none;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    background-color: #084968;
+}
+.name-box h4{
+    color: white;
+    font-size: 1.4vw;
+}
+.chat-box{
+    height: 80vh;
+    width: 110vh;
+    background-color: gray;
+    border-radius: 2vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    display: none;
+}
+
+
+.chat-box header{
+    height: 10vh;
+    width: 100%;
+    background-color: #0A2636;
+    /* position: absolute; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.chat-box header h2{
+    color: whitesmoke;
+}
+.chat-box header button{
+    padding: 1.6vh 3.5vh;
+    position: absolute;
+    right: 3%;
+    display: none;
+}
+
+.chat-box footer{
+    height: 8vh;
+    width: 100%;
+    background-color:#0A2636;
+    /* position: absolute; */
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#footer-form{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 4px;
+    gap: 4px; 
+}
+#footer-text{
+    height: 75%;
+    width: 85%;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    padding: 10px;
+    font-weight: 500;
+    letter-spacing: .4px;
+    color: #0A2636;
+}
+#footer-submit{
+    /* height: 75%; */
+    /* width: 20%; */
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    background-color: #084968;
+}
+.box {
+    height: 62vh;
+    width: 100%;
+    background-color: rgb(253, 252, 252);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 4px;
+    overflow-y: auto;
+}
+.box::-webkit-scrollbar{
+    display: none;
+}
+
+.left-box  {
+    height: fit-content;
+    width: fit-content;
+    max-width: 70%;
+    padding: 8px 14px;
+    border-radius: 12px;
+    background-color: #084968;
+    color: white;
+    align-self: flex-start; 
+}
+.right-box {
+    padding: 8px 14px;
+    border-radius: 12px;
+    height: fit-content;
+    width: fit-content;
+    max-width: 70%;
+    background-color: #EAF5FE;
+    align-self: flex-end; 
+}
+.box h5{
+    font-weight: 500;
+    letter-spacing: .4px;
+}
